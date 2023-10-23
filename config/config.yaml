@@ -1,0 +1,24 @@
+# Dataset for training / evaluation -- specific values should be filled for each dataset
+dataset:
+  n_samples: 1000                 # Samples per treatment
+  Y_f: 0.0                        # Factual outcome
+  T_f: 0                          # Factual treatment
+
+
+# Model specific parameters
+model:
+  name: ???
+
+# Experiment parameters
+exp:
+  seed: 10
+  device: cuda
+  logging: True
+  mlflow_uri: http://127.0.0.1:5000 # MlFlow server is located on 10.195.8.58
+
+
+# Hydra defaults
+defaults:
+  - _self_
+  - override hydra/hydra_logging: colorlog
+  - override hydra/job_logging: colorlog

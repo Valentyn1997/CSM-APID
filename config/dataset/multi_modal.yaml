@@ -1,0 +1,5 @@
+# @package _global_
+dataset:
+  _target_: src.data.MultiModal
+  name: multi_modal
+  n_samples: 1000
