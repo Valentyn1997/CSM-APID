@@ -14,7 +14,7 @@ hydra_colorlog
 
 seaborn
 normflows~=1.6
-torch==2.0.0
+torch>=2.3.0
 pot
 pyro-ppl
 pytorch-lightning
