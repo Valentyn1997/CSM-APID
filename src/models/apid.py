@@ -222,8 +222,9 @@ class APID(torch.nn.Module):
                     self.mlflow_logger.log_metrics({f'train_neg_log_prob{i}': log_prob.item()}, step=step)
                     self.mlflow_logger.log_metrics({f'train_wd{i}': wd.item()}, step=step)
 
-        self.plot_forward(train_data_dict['Y0'], self.apids[0])
-        self.plot_forward(train_data_dict['Y1'], self.apids[1])
+        if log:
+            self.plot_forward(train_data_dict['Y0'], self.apids[0])
+            self.plot_forward(train_data_dict['Y1'], self.apids[1])
 
         self.max_apids, self.min_apids = deepcopy(self.apids), deepcopy(self.apids)
         max_optimizers = [self.get_optimizer(apid.parameters()) for apid in self.max_apids]
