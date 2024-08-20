@@ -27,6 +27,8 @@ class LockdownData:
         self.n_samples = len(self.df_week)
 
     def get_data(self):
-        Y0 = torch.tensor((self.df_week[self.df_week['lockdown_bin'] == 0].log_incidence_rate - self.mean_log_incidence_rate).values, dtype=torch.float32)
-        Y1 = torch.tensor((self.df_week[self.df_week['lockdown_bin'] == 1].log_incidence_rate - self.mean_log_incidence_rate).values, dtype=torch.float32)
+        Y0 = torch.tensor((self.df_week[self.df_week['lockdown_bin'] == 0].log_incidence_rate -
+                           self.mean_log_incidence_rate).values, dtype=torch.float32)
+        Y1 = torch.tensor((self.df_week[self.df_week['lockdown_bin'] == 1].log_incidence_rate -
+                           self.mean_log_incidence_rate).values, dtype=torch.float32)
         return {'Y0': Y0.reshape(-1, 1), 'Y1': Y1.reshape(-1, 1)}

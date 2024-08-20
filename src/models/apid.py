@@ -44,7 +44,8 @@ class ConditionalAPID(torch.nn.Module):
             if i == 0:  # unit cube support -> real support
                 trans += [T.SigmoidTransform().inv]
             if i < self.dim_u - 1:  # dim in [2, 3, ..., dim_u]
-                trans += [ResidualTransform(self.dim_u - i, self.hid_dim * self.dim_u, atol=args.model.tol, rtol=args.model.tol) for _ in range(self.n_trans)]
+                trans += [ResidualTransform(self.dim_u - i, self.hid_dim * self.dim_u, atol=args.model.tol, rtol=args.model.tol)
+                          for _ in range(self.n_trans)]
             else:  # dim == 1 (last dimension)
                 trans += [ResidualTransform(self.dim_u - i, self.hid_dim * self.dim_u, atol=args.model.tol, rtol=args.model.tol)]
 
@@ -64,7 +65,6 @@ class ConditionalAPID(torch.nn.Module):
 
         self.gs = torch.nn.ModuleList(self.gs)
         self.trans = torch.nn.ModuleList([t for t in self.trans if isinstance(t, torch.nn.Module)])
-
 
     def log_prob(self, y):
         # Resetting proj_dists
@@ -170,7 +170,7 @@ class APID(torch.nn.Module):
         plt.show()
 
     def plot_level_sets(self, apids, t_f, t_cf, y_f, values, task):
-        fig = plt.figure(figsize=(10, 10))
+        plt.figure(figsize=(10, 10))
         with torch.no_grad():
             x1 = apids[t_f].backward(y_f, aug_mode='q', n_quantiles=100).cpu().numpy()
             plt.plot(x1[0, :, 0], x1[0, :, 1], s=1, c='tab:orange')
@@ -190,7 +190,8 @@ class APID(torch.nn.Module):
     def fit(self, train_data_dict: dict, f_dict: dict, log: bool):
         train_dataloaders = self.get_train_dataloader(train_data_dict, self.batch_size)
         y_f, t_f, t_cf = f_dict['Y_f'], f_dict['T_f'], 1 - f_dict['T_f']
-        support = [(train_data_dict['Y0'].min(), train_data_dict['Y0'].max()), (train_data_dict['Y1'].min(), train_data_dict['Y1'].max())]
+        support = [(train_data_dict['Y0'].min(), train_data_dict['Y0'].max()),
+                   (train_data_dict['Y1'].min(), train_data_dict['Y1'].max())]
         cf_support = torch.tensor(support[t_cf])
         task_non_inf = {'min': False, 'max': False}
 
@@ -235,7 +236,9 @@ class APID(torch.nn.Module):
             ys = torch.tensor(next(iter(train_dataloaders[0]))[0]), torch.tensor(next(iter(train_dataloaders[1]))[0])
             [[optimizer.zero_grad() for optimizer in optimizers] for optimizers in [self.max_apids, self.min_apids]]
 
-            for task, optimizers, apids in zip(['max', 'min'], [max_optimizers, min_optimizers], [self.max_apids, self.min_apids]):
+            for task, optimizers, apids in zip(['max', 'min'],
+                                               [max_optimizers, min_optimizers],
+                                               [self.max_apids, self.min_apids]):
                 if task_non_inf[task] and step < self.q_epochs:
                     continue
 

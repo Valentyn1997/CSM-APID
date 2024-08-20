@@ -27,8 +27,10 @@ class ProjectionAugmentation(T.Transform):
             self._r_cached = self._mu_cached + self._p_delta_cached.sample()
             x = torch.cat([y, self._r_cached], dim=-1)
         elif self.proj_dist.aug_mode == 'q':  # Quantiles based level set
-            self._r_cached = self._mu_cached + self._p_delta_cached.icdf(torch.linspace(0.0, 1.0, self.proj_dist.n_quantiles + 2)[1:-1])
-            x = torch.cat([(y.unsqueeze(-2) + torch.zeros_like(self._r_cached).unsqueeze(-1)), self._r_cached.unsqueeze(-1)], dim=-1)
+            self._r_cached = self._mu_cached + \
+                self._p_delta_cached.icdf(torch.linspace(0.0, 1.0, self.proj_dist.n_quantiles + 2)[1:-1])
+            x = torch.cat([(y.unsqueeze(-2) + torch.zeros_like(self._r_cached).unsqueeze(-1)), self._r_cached.unsqueeze(-1)],
+                          dim=-1)
         else:
             raise NotImplementedError()
         return x
@@ -77,4 +79,3 @@ class ProjectedAugmentedDistribution(Distribution):
             return (self.base_distribution.log_prob(aug_value) - log_prob_r).nanmean(-1)
         else:
             raise NotImplementedError()
-

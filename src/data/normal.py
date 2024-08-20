@@ -13,4 +13,3 @@ class Normal:
         Y0 = self.p_y0.sample((self.n_samples,))
         Y1 = self.p_y1.sample((self.n_samples,))
         return {'Y0': Y0, 'Y1': Y1}
-

@@ -27,12 +27,13 @@ class CNF(torch.nn.Module):
 
     def forward(self, t, x):
         with torch.set_grad_enabled(True):
-            x_in = torch.autograd.Variable(x[..., 1:], requires_grad=True).to(x)  # first dimension reserved to divergence propagation
+            x_in = torch.autograd.Variable(x[..., 1:], requires_grad=True).to(x)  # 1st dim reserved for divergence propagation
             # the neural network will handle the data-dynamics here
             x_out = self.net(t, x_in)
 
             trJ = self.trace_estimator(x_out, x_in, noise=self.noise)
-        return torch.cat([-trJ[..., None], x_out], -1) + 0 * x  # `+ 0*x` has the only purpose of connecting x[:, 0] to autograd graph
+        return torch.cat([-trJ[..., None], x_out], -1) + 0 * x
+        # `+ 0*x` has the only purpose of connecting x[:, 0] to autograd graph
 
 
 class VectorField(torch.nn.Module):
@@ -49,7 +50,6 @@ class VectorField(torch.nn.Module):
     def forward(self, t, x):
         x = self.f(torch.cat([x, torch.zeros_like(x[..., :1]) + t], -1))
         return x
-
 
 
 class CNFTransform(TransformModule):
