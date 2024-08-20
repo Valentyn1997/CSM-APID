@@ -1,7 +1,5 @@
-# local package
--e .
-
-# external requirements
+importlib-metadata<5.0
+pytest
 click
 Sphinx
 coverage
