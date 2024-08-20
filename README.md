@@ -2,6 +2,7 @@
 
 [![Conference](https://img.shields.io/badge/NeurIPS23-Paper-blue])]([https://proceedings.mlr.press/v202/melnychuk23a/melnychuk23a.pdf](https://papers.neurips.cc/paper_files/paper/2023/file/65cbe3e21ac62553111d9ecf7d60c18e-Paper-Conference.pdf))
 [![arXiv](https://img.shields.io/badge/arXiv-2306.01424-b31b1b.svg)](https://arxiv.org/abs/2306.01424)
+[![Python application](https://github.com/Valentyn1997/CSM-APID/actions/workflows/python-app.yml/badge.svg)](https://github.com/Valentyn1997/CSM-APID/actions/workflows/python-app.yml)
 
 
 Partial counterfactual identification for continuous outcomes with a Curvature Sensitivity Model
