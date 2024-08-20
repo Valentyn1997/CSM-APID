@@ -1,5 +1,8 @@
-PartialCounterfactualIdent
-==============================
+# Partial Counterfactual Identification
+
+[![Conference](https://img.shields.io/badge/NeurIPS23-Paper-blue])]([https://proceedings.mlr.press/v202/melnychuk23a/melnychuk23a.pdf](https://papers.neurips.cc/paper_files/paper/2023/file/65cbe3e21ac62553111d9ecf7d60c18e-Paper-Conference.pdf))
+[![arXiv](https://img.shields.io/badge/arXiv-2306.01424-b31b1b.svg)](https://arxiv.org/abs/2306.01424)
+
 
 Partial counterfactual identification for continuous outcomes with a Curvature Sensitivity Model
 
