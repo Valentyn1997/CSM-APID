@@ -1,13 +1,6 @@
-"""
-Conditional re-implementation of basic flow transformations from nflows package (https://github.com/bayesiains/nflows)
-"""
 import torch
-import torch.nn.init as init
-from typing import Optional, Tuple, List
-from torch import Tensor
 from torch.distributions import constraints
 import logging
-import pyro.distributions.transforms as T
 from pyro.distributions.torch_transform import TransformModule
 
 from normflows.flows.residual import iResBlock
