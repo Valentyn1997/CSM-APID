@@ -10,8 +10,8 @@ Partial counterfactual identification for continuous outcomes with a Curvature S
 ![image](https://github.com/Valentyn1997/CSM-APID/assets/23198776/f3446652-c1f7-4a00-99c4-dd4121f5361c)
 
 
-The project is built with following Python libraries:
-1. [Pyro](https://pyro.ai/) - deep learning and probabilistic modeling with residual normalizing flows and variational augmentations
+The project is built with the following Python libraries:
+1. [Pyro](https://pyro.ai/) - deep learning and probabilistic modelling with residual normalizing flows and variational augmentations
 2. [Hydra](https://hydra.cc/docs/intro/) - simplified command line arguments management
 3. [MlFlow](https://mlflow.org/) - experiments tracking
 4. [POT](https://pythonot.github.io/) - pytorch implementation of the Wasserstein distance
